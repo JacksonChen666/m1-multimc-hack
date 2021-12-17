@@ -28,6 +28,8 @@ def lwjglver():
     elif '3' in lwjgl_ver:
         # Use Tanmay's natives
         return 'lwjgl3'
+    else:
+        raise RuntimeError("Could not determine lwjgl version to use")
     
 def this_dir():
     return os.path.dirname(os.path.abspath(__file__))
