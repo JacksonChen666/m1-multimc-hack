@@ -11,7 +11,10 @@ import json
 from os import listdir
 from os.path import isfile, join
 
+DEBUGGING = os.getenv("DEBUG")
+
 LOG_FILE='/tmp/mcwrap.log'
+logging.basicConfig(level=logging.INFO if not DEBUGGING else logging.DEBUG)
 logging.getLogger().addHandler(logging.FileHandler(LOG_FILE))
 
 def lwjglver():
@@ -25,6 +28,8 @@ def lwjglver():
     elif '3' in lwjgl_ver:
         # Use Tanmay's natives
         return 'lwjgl3'
+    else:
+        raise RuntimeError("Could not determine lwjgl version to use")
     
 def this_dir():
     return os.path.dirname(os.path.abspath(__file__))
@@ -56,7 +61,8 @@ def rewrite_classpath(cp):
     jars = [j for j in cp.split(':')]
     for jar in lwjgl_jar_path():
         jars.insert(0, jar)
-    logging.info('rewritten classpath: {}'.format(jars))
+    logging.info('rewrote classpath')
+    logging.debug('rewritten classpath: {}'.format(jars))
     return ':'.join(jars)
 
 
@@ -66,7 +72,7 @@ def rewrite_mc_args(mc_args):
         if 'lwjgl' in a:
             if not '-D' in a:
                 a = rewrite_classpath(a)
-        logging.info('arg: {}'.format(a))
+        logging.debug('arg: {}'.format(a))
         out.append(a)
     return out
 
