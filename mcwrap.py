@@ -12,6 +12,7 @@ from os import listdir
 from os.path import isfile, join
 
 LOG_FILE='/tmp/mcwrap.log'
+logging.basicConfig(level=logging.INFO)
 logging.getLogger().addHandler(logging.FileHandler(LOG_FILE))
 
 def lwjglver():
