@@ -71,13 +71,10 @@ def rewrite_mc_args(mc_args):
     return out
 
 
-def launch_mc(mc_args, env_vars="none"):
+def launch_mc(mc_args, env_vars=None):
     logging.info('running minecraft with args: {}'.format(mc_args))
     logging.info('and with env vars: {}'.format(env_vars))
-    if env_vars != "none":
-        subprocess.run(mc_args, env=env_vars)
-    else:
-        subprocess.run(mc_args)
+    subprocess.run(mc_args, env=env_vars)
 
 def instance_dir():
     return os.environ['INST_DIR']
@@ -92,10 +89,7 @@ def run():
 
     copy_native_libs(natives_dir())
     env_vars={"":""}
-    if env_vars != {"":""}:
-        launch_mc(mc_args, env_vars)
-    else:
-        launch_mc(mc_args)
+    launch_mc(mc_args, env_vars)
 
 if __name__ == '__main__':
     run()
