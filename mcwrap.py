@@ -78,8 +78,8 @@ def rewrite_mc_args(mc_args):
 
 
 def launch_mc(mc_args, env_vars="none"):
-    logging.info('running minecraft with args: {}'.format(mc_args))
-    logging.info('and with env vars: {}'.format(env_vars))
+    logging.debug('running minecraft with args: {}'.format(mc_args))
+    logging.debug('and with env vars: {}'.format(env_vars))
     if env_vars != "none":
         subprocess.run(mc_args, env=env_vars)
     else:
