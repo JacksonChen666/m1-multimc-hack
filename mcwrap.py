@@ -8,8 +8,7 @@ import pathlib
 import logging
 import shutil
 import json
-from os import listdir
-from os.path import isfile, join
+from os.path import isfile
 
 LOG_FILE='/tmp/mcwrap.log'
 logging.getLogger().addHandler(logging.FileHandler(LOG_FILE))
