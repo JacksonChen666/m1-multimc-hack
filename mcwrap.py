@@ -77,8 +77,8 @@ def rewrite_mc_args(mc_args):
 
 
 def launch_mc(mc_args, env_vars=None):
-    logging.info('running minecraft with args: {}'.format(mc_args))
-    logging.info('and with env vars: {}'.format(env_vars))
+    logging.debug('running minecraft with args: {}'.format(mc_args))
+    logging.debug('and with env vars: {}'.format(env_vars))
     subprocess.run(mc_args, env=env_vars)
 
 def instance_dir():
